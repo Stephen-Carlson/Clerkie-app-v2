@@ -24,8 +24,6 @@ export default function TextContainer(props){
     useEffect(()=>{
         if(ref.current){
             setParentWidth(ref.current.offsetWidth)
-            console.log(parentWidth)
-
         }
     }, [])
     let css = {...props}
