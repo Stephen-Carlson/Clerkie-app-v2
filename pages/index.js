@@ -3,15 +3,18 @@ import {Fragment} from 'react'
 import TextImageContainer from "../components/TextImage";
 import TextContainer from "../components/TextContainer";
 import SpaceBlock from "../components/spaceBlock";
+import Container from "../components/Container"
 
 export default function Home(){
     const array =
     {
         "type": "text",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "font_size": "12",
-        "font_weight": "normal",
+        "font_size": "20",
+        "font_weight": "bold",
         "color": "black",
+        'width_percent':'0.75',
+        'alignment':'left'
 
     }
     const array1 =
@@ -20,7 +23,7 @@ export default function Home(){
         "title": {
             "text": "Title",
             "font_size": "20",
-            "font_weight": "normal",
+            "font_weight": "bold",
             "color": "black"
     },
         "subtitle": {
@@ -37,7 +40,8 @@ export default function Home(){
     }
 
     return(<Fragment>
-            <TextContainer text = {array.text} fontSize = {array.font_size} fontWeight = {array.font_weight} color={array.color}/>
+            <TextContainer text = {array.text} fontSize = {array.font_size} fontWeight = {array.font_weight} color={array.color} widthPercent = {array.width_percent} alignment={array.alignment}/>
+            <SpaceBlock height={array1.height}/>
             <TextImageContainer type = {array1.type} title={array1.title} subtitle = {array1.subtitle} image={array1.image} height = {array1.height}/>
         </Fragment>
     )

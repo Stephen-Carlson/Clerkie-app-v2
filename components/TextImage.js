@@ -10,6 +10,7 @@ const Contain = styled.div`
   height: ${ props => props.height } ;
   max-width: 600px;
   display:flex;
+  column-count: 3;
   `
 const ImgContain = styled.div`
       border-radius: 100%;
@@ -20,6 +21,10 @@ const ImgContain = styled.div`
       vertical-align: middle;
       flex:1;
       align-items:center;
+      column-span:1;
+      left: 50%;
+      top: 50%;
+      
       `
 const TextWrap = styled.div`
   width:inherit;
@@ -29,11 +34,12 @@ const TextWrap = styled.div`
   margin-bottom:0;
   align-items:center;
   align-self:center;
+  column-span:2;
   `
 
 export default function TextImageContainer(props){
     // use a react hook to get and update the size of the container
-    const [height, setHeight] = useState(()=>props.height)
+    const [height, setHeight] = useState(props.height)
     if(props.subtitle === undefined || props.subtitle.text === undefined){
         return (
             <Fragment>

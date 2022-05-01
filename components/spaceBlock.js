@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 import {Fragment} from "react";
 
-const space = styled.div`
+const Space = styled.div`
   border-style: solid;
   border-color: blue;
-  height: ${props => props.height};
+  min-height: ${props => props.height}px;
+  height: ${props => props.height}px;
+  max-width:600px;
 `
-
-
 
 export default function SpaceBlock(props){
     return(<Fragment>
-        <space><p></p></space>
+        <Space style={{height:props.height}}><span>{''}&nbsp;</span></Space>
     </Fragment>)
 }
