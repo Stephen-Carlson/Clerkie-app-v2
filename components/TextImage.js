@@ -19,7 +19,7 @@ const ImgContain = styled.div`
       width: ${props => props.height};
       margin:5px;
       vertical-align: middle;
-      flex:1;
+      display:flex;
       align-items:center;
       column-span:1;
       left: 50%;

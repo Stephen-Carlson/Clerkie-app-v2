@@ -1,20 +1,21 @@
 import {useRef, useState, useEffect, Fragment} from 'react'
 import TextContainer from "./TextContainer";
-export default function Container(props){
-    const ref = useRef();
-    const [width, setWidth] = useState(600);
-    const [height, setHeight] = useState(null);
-    useEffect(()=>{
-        if(ref.current){
-            setWidth(ref.current.offsetWidth)
-            console.log(width)
-            setHeight(ref.current.offsetHeight)
+import TextImageContainer from "./TextImage";
+import SpaceContainer from "./SpaceContainer";
+import ImageContainer from "./ImageContainer";
 
+export default function Container(props){
+    let html = ``
+    props.elements.forEach((element)=>{
+        if(element.type === 'text_with_image'){
+            html+= <TextImageContainer type ={element.type} title={element.title} subtitle={element.subtitle} image = {element.image} height = {element.height} />
+        }else if(element.type === 'text'){
+            html += <TextContainer text = {element.text} fontSize = {element.font_size} fontWeight = {element.font_weight} color={element.color} widthPercent = {element.width_percent} alignment={element.alignment}/>
+        }else if(element.type === 'image'){
+            html += <ImageContainer src = {element.src}  h2w_ratio = {element.h2w_ratio} widthPercent = {element.width_percent} viewAlignment = {element.view_alignment}/>
+        }else if(element.type === 'space'){
+            html += <SpaceContainer height={element.height}/>
         }
-    }, [])
-    if(props.type === 'text'){
-        return <Fragment>
-            <TextContainer text = {props.text} fontSize = {props.font_size} fontWeight = {props.font_weight} color={props.color} widthPercent = {props.width_percent} parentWidth = {width}/>
-        </Fragment>
-    }
+    })
+    return html;
 }

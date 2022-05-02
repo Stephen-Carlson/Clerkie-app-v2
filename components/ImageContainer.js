@@ -2,46 +2,54 @@ import styled from "styled-components";
 import {Fragment, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 
+const ImgContain = styled.div`
+      max-width:600px;
+      border-style: solid;
+      border-color: blue;
+      `
+const MovableImage = styled.div`
+  position:relative;
 
-
+`
 export default function ImageContainer(props){
     const ref = useRef();
-    const [width, setWidth] = useState(()=> 200);
-    const [height, setHeight] = useState(()=> 200);
+    const [width, setWidth] = useState(()=> 400);
 
     useEffect(()=>{
         if(ref.current){
             setWidth(ref.current.offsetWidth)
-            setHeight(ref.current.offsetHeight)
         }
     }, [])
 
-    const ImgContain = styled.div`
-      max-width:600px;
-      border-style: solid;
-      border-color: blue;
-      overflow: hidden;
-      display:flex;
-      flex-direction: column;
-      object-fit: contain;
-      height: ${props=> (props.h2w_ratio*width)}
-      
-      `
+    let css = {}
+    css.height = width*props.h2w_ratio;
+    css.width = width*props.widthPercent;
+    switch(props.viewAlignment){
+        case 'center':
+            css.marginRight = 'auto';
+            css.marginLeft = 'auto';
+            break;
+        case 'right':
+            css.marginRight = 0;
+            css.marginLeft = 'auto';
+            break;
+        case 'left':
+            css.marginRight = 'auto';
+            css.marginLeft = '0';
+            break;
 
-    let css = {...props}
-    delete css.src;
+
+    }
 
       return <Fragment>
           <ImgContain>
-              <div style={{textAlign:props.viewAlignment, position:'relative', objectFit:'contain'}}>
+              <MovableImage style={css}>
                   <Image src={props.src}
-                         height={height*props.h2w_ratio}
-                         width={width}
+                         layout={'fill'}
                          loader = {()=>props.src}
                          alt = ''
-                         style={css}
                   />
-              </div>
+              </MovableImage>
           </ImgContain>
       </Fragment>
 

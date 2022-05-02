@@ -9,7 +9,7 @@ const Space = styled.div`
   max-width:600px;
 `
 
-export default function SpaceBlock(props){
+export default function SpaceContainer(props){
     return(<Fragment>
         <Space style={{height:props.height}}><span>{''}&nbsp;</span></Space>
     </Fragment>)

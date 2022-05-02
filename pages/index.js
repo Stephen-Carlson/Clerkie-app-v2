@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {Fragment} from 'react'
 import TextImageContainer from "../components/TextImage";
 import TextContainer from "../components/TextContainer";
-import SpaceBlock from "../components/spaceBlock";
+import SpaceContainer from "../components/SpaceContainer";
 import ImageContainer from "../components/ImageContainer";
 
 export default function Home(){
@@ -12,8 +12,8 @@ export default function Home(){
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "font_size": "20",
         "font_weight": "bold",
-        "color": "blue",
-        'width_percent':'0.5',
+        "color": "black",
+        'width_percent':'0.4',
         'alignment':'left'
 
     }
@@ -40,16 +40,16 @@ export default function Home(){
     }
     const array2 = {
         "type": "image",
-        "h2w_ratio": '1.5',
-        "width_percent": .25,
-        "view_alignment": "center",
+        "h2w_ratio": '0.5',
+        "width_percent": .75,
+        "view_alignment": "left",
         "src": "https://www.clerkie.io/static/coin-75fb80be577c00ca53291d2bb116ce01.png",
         "click_action": "dismiss"
     }
-    console.log(array2.h2w_ratio)
+
     return(<Fragment>
             <TextContainer text = {array.text} fontSize = {array.font_size} fontWeight = {array.font_weight} color={array.color} widthPercent = {array.width_percent} alignment={array.alignment}/>
-            <SpaceBlock height={array1.height}/>
+            <SpaceContainer height={array1.height}/>
             <TextImageContainer type = {array1.type} title={array1.title} subtitle = {array1.subtitle} image={array1.image} height = {array1.height}/>
             <ImageContainer src = {array2.src}  h2w_ratio = {array2.h2w_ratio} widthPercent = {array2.width_percent} viewAlignment = {array2.view_alignment}/>
         </Fragment>
