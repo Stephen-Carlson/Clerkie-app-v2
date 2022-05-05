@@ -3,23 +3,25 @@ import {Fragment, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 
 const ImgContain = styled.div`
-      max-width:600px;
       border-style: solid;
       border-color: blue;
+      margin:0;
       `
 const MovableImage = styled.div`
   position:relative;
 
 `
 export default function ImageContainer(props){
-    const ref = useRef();
+    const ContainerRef = useRef();
+    const ImageRef = useRef();
     const [width, setWidth] = useState(()=> 400);
 
     useEffect(()=>{
-        if(ref.current){
-            setWidth(ref.current.offsetWidth)
+        if(ContainerRef.current){
+            setWidth(ContainerRef.current.offsetWidth)
         }
     }, [])
+    // const ImageWidth = ImageRef.current.offsetWidth || width
 
     let css = {}
     css.height = width*props.h2w_ratio;
@@ -42,9 +44,10 @@ export default function ImageContainer(props){
     }
 
       return <Fragment>
-          <ImgContain>
-              <MovableImage style={css}>
-                  <Image src={props.src}
+          <ImgContain ref = {ContainerRef} style={{width:width}}>
+              <MovableImage ref ={ImageRef} style={css}>
+                  <Image
+                         src={props.src}
                          layout={'fill'}
                          loader = {()=>props.src}
                          alt = ''

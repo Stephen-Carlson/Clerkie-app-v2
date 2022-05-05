@@ -1,12 +1,12 @@
 import {Fragment, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
-import style from 'styled-jsx';
+
 
 const TextWrap = styled.div`
   border-style: solid;
   border-color: blue;
-  padding:10px;
-  max-width: 600px;
+  margin:5px;
+
   align-items: center;
   align-content: center;
   display:flex;

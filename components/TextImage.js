@@ -8,7 +8,7 @@ const Contain = styled.div`
   border-color: blue;
   overflow:hidden;
   height: ${ props => props.height } ;
-  max-width: 600px;
+
   display:flex;
   column-count: 3;
   `

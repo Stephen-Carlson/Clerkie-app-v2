@@ -6,7 +6,7 @@ const Space = styled.div`
   border-color: blue;
   min-height: ${props => props.height}px;
   height: ${props => props.height}px;
-  max-width:600px;
+
 `
 
 export default function SpaceContainer(props){
