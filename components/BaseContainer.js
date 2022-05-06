@@ -51,7 +51,7 @@ export default function BaseContainer({element}){
             }
             popUpStack.push(current)
         }
-    }, [element])
+    }, [])
 
     // make a list of children PopUps, so we can open/close them from anywhere
     return (

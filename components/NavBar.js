@@ -23,7 +23,7 @@ export default function NavBar(){
         marginBottom:'auto'
     }
     return (<NavList style={CSSNavUl}>
-        <li style={CSSNavLi}><Link href='/' passHref={false}>
+        <li style={CSSNavLi}><Link href='/' passHref={true}>
             <p>Home</p>
         </Link>
         </li>
