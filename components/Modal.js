@@ -1,22 +1,43 @@
-import {useState} from "react";
-import styled from 'styled-components'
+import { motion } from "framer-motion";
+import Backdrop from "../components/backdrop"
+
+const dropIn = {
+    hidden: {
+        y: "-100vh",
+        opacity: 0,
+    },
+    visible: {
+        y: "0",
+        opacity: 1,
+        transition: {
+            duration: 0.1,
+            type: "spring",
+            damping: 25,
+            stiffness: 500,
+        },
+    },
+    exit: {
+        y: "100vh",
+        opacity: 0,
+    },
+};
 
 
-const pop = styled.div`
-  position:fixed;
-  background-color:red;
-  top:50%;
-  left:50%;
-`
-export default function Modal(){
-    const [show, setShow] = useState(false)
+const Modal = ({ handleClose, text }) => {
+
     return (
-        <pop>
-            <a onClick={()=> setShow(true)}>click me</a>
-            {show?(
-                <div onClick={()=>setShow(false)}><h1>see me now?</h1></div>
-            ):null}
-        </pop>
-    )
-
-}
+        <Backdrop onClick={handleClose}>
+            <motion.div
+                onClick={(e) => e.stopPropagation()}
+                className="modal orange-gradient"
+                variants={dropIn}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+            >
+                <p>{text}</p>
+                <button onClick={handleClose}>Close</button>
+            </motion.div>
+        </Backdrop>
+    );
+};

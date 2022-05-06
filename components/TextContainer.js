@@ -3,10 +3,7 @@ import styled from "styled-components";
 
 
 const TextWrap = styled.div`
-  border-style: solid;
-  border-color: blue;
-  margin:5px;
-
+  padding:5px;
   align-items: center;
   align-content: center;
   display:flex;
@@ -30,6 +27,20 @@ export default function TextContainer(props){
     css.width = parentWidth * props.widthPercent
     css.textAlign = props.alignment
     delete css.text
+    switch(props.viewAlignment){
+        case 'center':
+            css.marginRight = 'auto';
+            css.marginLeft = 'auto';
+            break;
+        case 'right':
+            css.marginRight = 0;
+            css.marginLeft = 'auto';
+            break;
+        case 'left':
+            css.marginRight = 'auto';
+            css.marginLeft = '0';
+            break;
+    }
 
     // let widthPercent = props.width_percent;
     // let alignment = props.alignment;

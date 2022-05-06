@@ -1,40 +1,38 @@
 import Image from 'next/image'
 import styled from 'styled-components'
-import React, { Fragment, useRef, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 
 
 const Contain = styled.div`
-  border-style: solid;
-  border-color: blue;
   overflow:hidden;
-  height: ${ props => props.height } ;
+  height: ${ props => props.height};
 
-  display:flex;
+  display:grid;
+  grid-template-areas: 'one two';
+  grid-template-columns: 1fr 1.5fr;
   column-count: 3;
   `
-const ImgContain = styled.div`
-      border-radius: 100%;
+const ImgContain = styled.span`
+      border-radius: 50%;
       overflow: hidden;
-      height:${props => props.height};
-      width: ${props => props.height};
+      height:max-content;
+      width: max-content;
       margin:5px;
-      vertical-align: middle;
-      display:flex;
+      grid-area: one;
       align-items:center;
-      column-span:1;
-      left: 50%;
-      top: 50%;
+      vertical-align: bottom;
+
       
       `
 const TextWrap = styled.div`
   width:inherit;
   margin-left:5px;
-  flex:2;
   margin-top:0;
   margin-bottom:0;
   align-items:center;
   align-self:center;
   column-span:2;
+  grid-area: two;
   `
 
 export default function TextImageContainer(props){
@@ -48,6 +46,7 @@ export default function TextImageContainer(props){
                         <p className = 'title' style={jsonToCss(props.title)}>{props.title.text}</p>
                     </TextWrap>
                     <ImgContain height={props.height}>
+                        <div>
                         <Image src={props.image.src}
                             //layout={'intrinsic'}
                                height={props.height}
@@ -55,6 +54,7 @@ export default function TextImageContainer(props){
                                loader = {()=>props.image.src}
                                alt = ''
                         />
+                        </div>
                     </ImgContain>
                 </Contain>
             </Fragment>)

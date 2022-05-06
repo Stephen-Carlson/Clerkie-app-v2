@@ -3,8 +3,6 @@ import {Fragment, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 
 const ImgContain = styled.div`
-      border-style: solid;
-      border-color: blue;
       margin:0;
       `
 const MovableImage = styled.div`
@@ -39,12 +37,10 @@ export default function ImageContainer(props){
             css.marginRight = 'auto';
             css.marginLeft = '0';
             break;
-
-
     }
 
       return <Fragment>
-          <ImgContain ref = {ContainerRef} style={{width:width}}>
+          <ImgContain ref = {ContainerRef}>
               <MovableImage ref ={ImageRef} style={css}>
                   <Image
                          src={props.src}
