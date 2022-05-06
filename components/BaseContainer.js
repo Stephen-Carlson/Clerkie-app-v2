@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import Container from "./Container";
+import ContainerDifferentiator from "./ContainerDifferentiator";
 import {router, useRouter} from "next/router";
 import {motion, AnimatePresence} from 'framer-motion'
 import backdrop from "./backdrop";
@@ -42,6 +42,7 @@ export default function BaseContainer({element}){
     const [show, setShow] = useState(() =>false)
     const [vIndex, setVIndex] = useState(1)
     const [popUpStack, setStack] = useState([])
+    // load the stack full of pop ups, and reload it whenever the element passed to this component changes
     useEffect(()=> {
         if(element.click_action_data !== undefined) {
             let current = element;
@@ -51,7 +52,7 @@ export default function BaseContainer({element}){
             }
             popUpStack.push(current)
         }
-    }, [])
+    }, [element])
 
     // make a list of children PopUps, so we can open/close them from anywhere
     return (
@@ -60,7 +61,7 @@ export default function BaseContainer({element}){
                 <a onClick={()=>{
                             element.click_action !== undefined? setShow(toggle(show)): null
                         }}>
-                            <Container element = {element}/>
+                            <ContainerDifferentiator element = {element}/>
                         </a>
             {/*if show state is true, load this popup*/}
                 <AnimatePresence>
@@ -74,6 +75,7 @@ export default function BaseContainer({element}){
                     >
                         <Modal  style = {css} isOpen = {show}>
                             <div onClick = {()=> {
+                                // implement different click actions here
                                 if([popUpStack[vIndex].click_action !== undefined]){
                                 switch(popUpStack[vIndex].click_action){
                                     case 'present_popup':
@@ -93,7 +95,7 @@ export default function BaseContainer({element}){
                             }
                             }}>
                                 <div style={{margin:'auto'}}>
-                                    <Container element = {popUpStack[vIndex]}/>
+                                    <ContainerDifferentiator element = {popUpStack[vIndex]}/>
                                 </div>
                             </div>
                         </Modal>

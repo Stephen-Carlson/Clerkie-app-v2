@@ -6,7 +6,7 @@ import ImageContainer from "./ImageContainer";
 
 
 
-export default function Container({element}) {
+export default function ContainerDifferentiator({element}) {
     const [showPopup, setShow] = useState(false)
     useEffect (()=>{
         setShow(false)
